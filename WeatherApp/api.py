@@ -1,9 +1,9 @@
-from dotenv import load_dotenv
-from errors import CityNotFoundError, WeatherAPIError
+from .config import load_config
+from .errors import CityNotFoundError, WeatherAPIError
 import os
 import requests
 
-load_dotenv()
+load_config()  # Load the configuration file to access the API key
 
 API_KEY = os.getenv("API_KEY")
 BASE_URL = "https://api.openweathermap.org/data/2.5/weather"

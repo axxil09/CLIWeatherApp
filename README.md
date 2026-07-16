@@ -109,10 +109,23 @@ source venv/bin/activate
 venv\Scripts\activate
 ```
 
-Install the required dependencies:
+Install the project:
+
+```bash
+pip install .
+```
+
+For development, install in editable mode:
+
+```bash
+pip install -e .
+```
+
+If you only want the dependencies without installing the CLI command:
 
 ```bash
 pip install -r requirements.txt
+```
 ```
 
 ---
@@ -141,13 +154,29 @@ Get your API keys from:
 
 ## ▶️ Running the Application
 
-Run directly:
+### Option 1: Run Without Installing
+
+From the project root, execute:
 
 ```bash
-python WeatherApp/main.py
+python -m WeatherApp.main
 ```
 
-Or, if installed as a package:
+### Option 2: Install as a CLI (Recommended)
+
+Install the package:
+
+```bash
+pip install .
+```
+
+Or, for development (editable mode):
+
+```bash
+pip install -e .
+```
+
+After installation, run the application from any directory:
 
 ```bash
 weather

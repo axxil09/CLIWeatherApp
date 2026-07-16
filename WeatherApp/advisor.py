@@ -1,10 +1,10 @@
 import os
 import groq
-from models import Weather
+from .models import Weather
 from groq import Groq
-from dotenv import load_dotenv
-from errors import LLMServiceError
-load_dotenv()
+from .config import load_config
+from .errors import LLMServiceError
+load_config()  # Load the configuration file to access the API key
 
 
 

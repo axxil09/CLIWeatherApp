@@ -1,10 +1,23 @@
-from api import fetch_weather
-from parser import parse_weather
-from advisor import build_prompt, generate_advice
-from formatter import weather_to_text, advice_to_text
-from errors import WeatherError
-from ui import start_animation, stop
+import sys
+from .config import setup, CONFIG_FILE
+from .api import fetch_weather
+from .parser import parse_weather
+from .advisor import build_prompt, generate_advice
+from .formatter import weather_to_text, advice_to_text
+from .errors import WeatherError
+from .ui import start_animation, stop
 def main():
+    if len(sys.argv) > 1 and sys.argv[1] == "config":
+        setup()
+        return
+    if not CONFIG_FILE.exists():
+        print("Configuration not found.")
+        print()
+        print("Run the following command first:")
+        print()
+        print("    weather config")
+        print()
+        return
     while True:
         
         city = input("Enter Your City: ")

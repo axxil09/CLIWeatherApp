@@ -1,4 +1,4 @@
-from models import Weather
+from .models import Weather
 def weather_to_text(weather: Weather) -> str: #Takes a Weather Object and Format it for better readability
     
     return (

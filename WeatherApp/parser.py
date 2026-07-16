@@ -1,4 +1,4 @@
-from models import Weather
+from .models import Weather
 
 
 def parse_weather(weather_data): #Takes Json file and Returns it as a readable Weather Object
