@@ -1,19 +1,20 @@
 # 🌤 CLI Weather Advisor
 
-An AI-powered command-line weather application built with Python.
+An installable AI-powered command-line weather application built with Python.
 
-CLI Weather Advisor fetches real-time weather information from the OpenWeatherMap API and uses Groq's Llama 3.1 model to generate concise, practical weather advice. The application features a clean terminal interface, animated loading screen, and robust error handling.
+CLI Weather Advisor retrieves real-time weather information from OpenWeatherMap and generates concise weather advice using Groq's Llama 3.1 model. The application features a clean terminal interface, animated loading screen, persistent configuration, and robust error handling.
 
 ---
 
 ## ✨ Features
 
-- 🌍 Real-time weather information
+- 🌍 Live weather information
 - 🤖 AI-generated weather advice
-- 🏃 Animated terminal loading screen
-- 🎨 Clean and formatted CLI output
-- ⚠️ Comprehensive error handling
-- 🔒 Environment variable support using `.env`
+- 🏃 Animated loading screen
+- 🎨 Beautiful terminal output
+- ⚙️ Persistent configuration
+- ⚠️ Robust error handling
+- 📦 Installable CLI application
 - 🧩 Modular project architecture
 
 ---
@@ -21,38 +22,40 @@ CLI Weather Advisor fetches real-time weather information from the OpenWeatherMa
 ## 📸 Sample Output
 
 ```text
+$ weather
+
 Enter Your City: Kochi
 
        🌤 Weather Report
 
 📍 City         : Kochi
-🌡 Temperature  : 26.4 °C
+🌡 Temperature  : 25.5 °C
 🥵 Feels Like   : 26.4 °C
-💧 Humidity     : 89%
-🌬 Wind Speed   : 3.36 m/s
+💧 Humidity     : 88%
+🌬 Wind Speed   : 1.34 m/s
 👁 Visibility   : 10000 m
-☁ Cloud Cover  : 100%
+☁ Cloud Cover  : 90%
 🌥 Condition    : Clouds
 📝 Description  : Overcast Clouds
 
-💡 Advice For The Day
+        💡 Advice For The Day
 
-Wear light, breathable clothing to stay comfortable.
-Stay hydrated throughout the day.
+Wear light, breathable clothing due to high humidity.
+Consider carrying an umbrella for cloudy conditions.
 ```
 
 ---
 
-## 📂 Project Structure
+# 📂 Project Structure
 
 ```text
 CLIWeather/
 │
 ├── WeatherApp/
 │   ├── __init__.py
-│   ├── .env.example
 │   ├── advisor.py
 │   ├── api.py
+│   ├── config.py
 │   ├── errors.py
 │   ├── formatter.py
 │   ├── main.py
@@ -60,7 +63,7 @@ CLIWeather/
 │   ├── parser.py
 │   └── ui.py
 │
-├── .env
+├── .env.example
 ├── .gitignore
 ├── pyproject.toml
 ├── README.md
@@ -69,171 +72,132 @@ CLIWeather/
 
 ---
 
-## 🛠 Built With
+# 🛠 Built With
 
 - Python 3
 - OpenWeatherMap API
 - Groq API
 - Llama 3.1 8B Instant
 - Requests
-- Python Dotenv
+- python-dotenv
 
 ---
 
-## 🚀 Installation
+# 🚀 Installation
 
 Clone the repository:
 
 ```bash
-git clone https://github.com/DebugWAkhil/CLIWeather.git
-cd CLIWeather
+git clone https://github.com/axxil09/CLIWeatherApp.git
+cd CLIWeatherApp
 ```
 
-Create a virtual environment:
-
-```bash
-python -m venv venv
-```
-
-Activate it.
-
-### Linux / macOS
-
-```bash
-source venv/bin/activate
-```
-
-### Windows
-
-```powershell
-venv\Scripts\activate
-```
-
-Install the project:
+Install the application:
 
 ```bash
 pip install .
 ```
 
-For development, install in editable mode:
+For development:
 
 ```bash
 pip install -e .
 ```
 
-If you only want the dependencies without installing the CLI command:
+You can also install globally using **pipx**:
 
 ```bash
-pip install -r requirements.txt
-```
+pipx install .
 ```
 
 ---
 
-## 🔑 Configuration
+# ⚙️ Initial Configuration
 
-Copy the example environment file:
+Before using the application, configure your API keys.
+
+Run:
 
 ```bash
-cp WeatherApp/.env.example .env
+weather config
 ```
 
-Update it with your own API keys:
+You'll be prompted for:
 
-```env
-API_KEY=your_openweathermap_api_key
-GROQ_API_KEY=your_groq_api_key
+```text
+OpenWeatherMap API Key:
+Groq API Key:
 ```
 
-Get your API keys from:
-
-- OpenWeatherMap — https://openweathermap.org/api
-- Groq Console — https://console.groq.com/keys
+The configuration is stored locally on your machine and only needs to be completed once.
 
 ---
 
-## ▶️ Running the Application
+# ▶️ Usage
 
-### Option 1: Run Without Installing
-
-From the project root, execute:
-
-```bash
-python -m WeatherApp.main
-```
-
-### Option 2: Install as a CLI (Recommended)
-
-Install the package:
-
-```bash
-pip install .
-```
-
-Or, for development (editable mode):
-
-```bash
-pip install -e .
-```
-
-After installation, run the application from any directory:
+After configuration:
 
 ```bash
 weather
 ```
 
+Enter a city name and receive:
+
+- Live weather report
+- AI-generated weather advice
+
 ---
 
-## ⚠️ Error Handling
+# ⚠️ Error Handling
 
 The application gracefully handles:
 
 - Invalid city names
-- Missing API keys
-- Network connectivity issues
-- API authentication failures
+- Missing configuration
+- Invalid API keys
+- Network failures
 - API rate limits
-- Unexpected API errors
-- Keyboard interruption (`Ctrl + C`)
+- Weather service errors
+- Groq API errors
+- Keyboard interruption (`Ctrl+C`)
 
 ---
 
-## 💡 Architecture
-
-The project follows a modular design.
+# 🧩 Architecture
 
 | Module | Responsibility |
 |---------|----------------|
-| `api.py` | Fetch weather data from OpenWeatherMap |
-| `advisor.py` | Generate AI weather advice using Groq |
-| `parser.py` | Convert API response into a Weather model |
-| `formatter.py` | Format weather report and advice for the terminal |
-| `ui.py` | Terminal animation utilities |
+| `main.py` | Application entry point |
+| `api.py` | OpenWeatherMap integration |
+| `advisor.py` | Groq AI integration |
+| `parser.py` | Converts API response into Weather objects |
+| `formatter.py` | Terminal output formatting |
+| `config.py` | Configuration management |
+| `ui.py` | Loading animation |
 | `errors.py` | Custom exception hierarchy |
 | `models.py` | Weather dataclass |
-| `main.py` | Application entry point |
 
 ---
 
-## 📈 Future Improvements
+# 📈 Future Improvements
 
-- Five-day weather forecast
+- Five-day forecast
 - Temperature unit selection (°C / °F)
-- Colored terminal output
+- Colored terminal themes
 - Automatic location detection
 - Weather history
-- Packaged CLI installation via PyPI
+- PyPI publishing
 
 ---
 
-## 👨‍💻 Author
+# 👨‍💻 Author
 
 **Akhilesh P S**
 
-GitHub: https://github.com/DebugWAkhil
+GitHub: https://github.com/axxil09
 
 ---
 
-## 📜 License
+# 📄 License
 
-This project is licensed under the MIT License.
+Licensed under the MIT License.
